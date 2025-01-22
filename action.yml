@@ -1,0 +1,17 @@
+name: "Generate License Report"
+description: "Runs the license generation script"
+runs:
+  using: "composite"
+  steps:
+    - name: Check out
+      uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
+    - name: Run script
+      run: python generate-licenses.py --licenses "${{ inputs.licenses }}"
+inputs:
+  licenses:
+    description: "Comma-separated list of licenses"
+    required: true

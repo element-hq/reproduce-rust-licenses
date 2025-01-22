@@ -1,0 +1,33 @@
+name: tests
+
+on:
+  push:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Rust
+        uses: actions/setup-rust@v1
+        with:
+          rust-version: stable
+
+      - name: Install cargo-license
+        run: cargo install cargo-license
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install Python dependencies for testing
+        run: |
+          pip install -r dev-requirements.txt
+
+      - name: Run tests
+        run: |
+          # Runs both unit and integration tests under pytest
+          pytest --maxfail=1 --disable-pytest-warnings -v

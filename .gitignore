@@ -1,0 +1,34 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache
+
+# direnv and devenv users
+.envrc
+.devenv
+.direnv
+
+# Virtual environment directories
+env/
+venv/
+
+# Test coverage
+.coverage
+htmlcov/
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# Logs
+*.log
+
+# Any generated artifacts
+UPSTREAM-LICENSES.md
+cargo-licenses.json
