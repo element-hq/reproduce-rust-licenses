@@ -1,10 +1,14 @@
 # Reproduce Rust Licenses Action
 
-This GitHub Action runs the [`generate-licenses.py`](./generate-licenses.py) script to produce an `UPSTREAM-LICENSES.md` file from Cargo dependencies. It:
-1. Installs Python and your repo’s Python dependencies.
-2. Runs `cargo-license --json`.
-3. Passes the JSON to `generate-licenses.py`.
-4. Writes `UPSTREAM-LICENSES.md` containing licenses for the crates you depend on.
+This GitHub Action runs the [`generate-licenses.py`](./generate-licenses.py)
+script to produce an `UPSTREAM-LICENSES.md` file from Cargo dependencies. This
+is useful when some licenses require you to reproduce them within your software
+distribution. This action:
+
+1. Installs Python 3.x.
+2. Runs [`cargo-license`](https://github.com/onur/cargo-license) to detect the license of each crate.
+3. Passes the JSON output to `generate-licenses.py`.
+4. Writes `UPSTREAM-LICENSES.md` containing the configured licenses for the crates you depend on.
 
 <details>
 
@@ -86,6 +90,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Usage
 
+Add the action to your GitHub Actions workflow. Below is a full example of generating
+the license file and building a docker image that includes it.
+
 ```yaml
 name: Build release images
 on:
@@ -132,7 +139,16 @@ jobs:
 
 ### License Texts
 
-By default, the script expects license text files in `./_licenses/<LICENSE_NAME>`. Set `LICENSE_FILE_DIR` as needed.
+By default, the script uses the license text files included in this repository
+(see [./_licenses](./_licenses/)).
+
+If you want to use your own license files, set the `LICENSE_FILE_DIR`
+environment variable to a path containing files named after each license (i.e.
+`./my-licenses/Apache-2.0`). License names must be [SPDX 2.3 license
+expressions](https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/);
+the same that's used in the
+[`license`](https://doc.rust-lang.org/cargo/reference/manifest.html#the-license-and-license-file-fields)
+field of `Cargo.toml`.
 
 ### Development
 
