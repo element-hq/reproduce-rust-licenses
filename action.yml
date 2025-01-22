@@ -21,7 +21,7 @@ runs:
       # directory in downstream workflows.
       run: |
         LICENSE_FILE_DIR=reproduce-rust-licenses/_licenses \
-          python reproduce-rust-licenses/generate-licenses.py --licenses "${{ inputs.licenses }}"
+          python reproduce-rust-licenses/generate_licenses.py --licenses "${{ inputs.licenses }}"
 inputs:
   licenses:
     description: "Comma-separated list of licenses"
