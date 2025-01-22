@@ -20,6 +20,7 @@ runs:
       # This will run outside of the reproduce-rust-licenses
       # directory in downstream workflows.
       run: |
+        cargo license --json | \
         LICENSE_FILE_DIR=reproduce-rust-licenses/_licenses \
           python reproduce-rust-licenses/generate_licenses.py --licenses "${{ inputs.licenses }}"
 inputs:
