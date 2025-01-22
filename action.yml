@@ -6,6 +6,9 @@ runs:
     - name: Check out
       uses: actions/checkout@v3
       with:
+        # Ensure we check out this repository, and not the repository
+        # of the downstream GitHub Actions workflow that is importing
+        # our action.
         repository: element-hq/reproduce-rust-licenses
         path: reproduce-rust-licenses
     - name: Set up Python
