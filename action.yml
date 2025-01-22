@@ -10,6 +10,7 @@ runs:
       with:
         python-version: "3.x"
     - name: Run script
+      shell: bash
       run: python generate-licenses.py --licenses "${{ inputs.licenses }}"
 inputs:
   licenses:
