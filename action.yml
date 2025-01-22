@@ -5,6 +5,9 @@ runs:
   steps:
     - name: Check out
       uses: actions/checkout@v3
+      with:
+        repository: element-hq/reproduce-rust-licenses
+        path: reproduce-rust-licenses
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
