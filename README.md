@@ -11,7 +11,7 @@ This GitHub Action runs the [`generate-licenses.py`](./generate-licenses.py) scr
 ```yaml
 name: Build release images
 on:
-  # Run when crea
+  # Run when a release is created.
   release:
     types: [ published ]
 
